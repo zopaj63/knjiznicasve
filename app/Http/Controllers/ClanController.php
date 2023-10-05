@@ -85,11 +85,17 @@ class ClanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+    // metoda za potvrdu brisanja zapisa
+    public function confirmDelete(Clan $clan)
+    {
+        return view('clans.confirm-delete', compact('clan'));
+    }
+    
+    // metoda za brisanje podatka
     public function destroy(Clan $clan)
     {
-        //brisanje točno određenog člana
         $clan->delete();
         return redirect()->route("clans.index")->with("success", "Član je uspješno obrisan");
-
     }
 }

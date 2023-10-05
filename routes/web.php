@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource("clans", ClanController::class); // sve rute za CRUD operacije
+
+Route::get("/clans/{clan}/confirmDelete", [ClanController::Class, "confirmDelete"])->name("clans.confirm-delete");
