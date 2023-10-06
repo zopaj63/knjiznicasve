@@ -65,7 +65,7 @@ class KnjigaController extends Controller
         $request->validate([
             "naziv"=>"required",
             "autor"=>"required",
-            "godina_izdanja"=>"required",
+            "godina_izdanja"=>"required|integer",
         ]);
 
         $knjiga->update($request->all());

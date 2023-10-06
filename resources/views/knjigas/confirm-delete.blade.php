@@ -1,6 +1,6 @@
-<h1>Potvrda brisanja Člana</h1>
-<p>Član: {{$clan->ime}} {{$clan->prezime}}</p>
-<form action="{{route('clans.destroy', $clan->id)}}" method="POST">
+<h1>Potvrda brisanja Knjige</h1>
+<p>Knjiga: {{$knjiga->naziv}} {{$knjiga->autor}} {{$knjiga->godina_izdanja}}</p>
+<form action="{{route('knjigas.destroy', $knjiga->id)}}" method="POST">
     @csrf
     @method("DELETE")
     <button type="submit">Obriši</button>
@@ -8,6 +8,6 @@
 <br>
 
 
-<form action="{{route('clans.index')}}" method="GET">
+<form action="{{route('knjigas.index')}}" method="GET">
     <button type="submit">Odustani</button>
 </form>

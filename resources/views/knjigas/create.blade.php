@@ -8,5 +8,5 @@
     <input type="text" name="autor"><br><br>
     <label>Godina izdanja</label>
     <input type="number" name="godina_izdanja"><br><br>
-    <button type="submit">Dodaj člana</button>
+    <button type="submit">Dodaj knjigu</button>
 </form>
