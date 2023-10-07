@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-        @foreach($posudbas as $posudba)
+        @foreach($posudbe as $posudba)
             <tr>
                 <td>Član: {{$posudba->clan->ime}} {{$posudba->clan->prezime}}</td>
                 <td>Knjiga: {{$posudba->knjiga->naziv}}</td>
@@ -35,7 +35,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="{{route('posudbas.destroy', $posudba->id)}}" method="GET" style="dysplay: inline;">
+                    <form action="{{route('posudbas.destroy', $posudba->id)}}" method="POST" style="dysplay: inline;">
                         @csrf
                         @method("DELETE")
                         <button type="submit">Obriši</button>

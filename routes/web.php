@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClanController;
 use App\Http\Controllers\KnjigaController;
-
+use App\Http\Controllers\PosudbaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource("clans", ClanController::class); // sve rute za CRUD operacije
-Route::resource("knjigas", KnjigaController::class); // sve rute za CRUD operacije
+Route::resource("knjigas", KnjigaController::class);
+Route::resource("posudbas", PosudbaController::class);
 
 Route::get("/clans/{clan}/confirmDelete", [ClanController::Class, "confirmDelete"])->name("clans.confirm-delete");
 
