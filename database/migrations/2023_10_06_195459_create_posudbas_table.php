@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('posudbas', function (Blueprint $table) {
             $table->id();
-            //$table->foreignId("id")->constrained();
-            //$table->foreignId("id")->constrained(); ne može bit 2 ista id
+            //$table->foreignId("id_clan")->constrained("clans");
+            //$table->foreignId("id_knjiga")->constrained("knjigas");
             $table->unsignedBigInteger("id_clan");
             $table->unsignedBigInteger("id_knjiga"); // ručno dodajemo id s nazivom
             $table->date("datum_posudbe");

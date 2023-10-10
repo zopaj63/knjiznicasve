@@ -18,10 +18,10 @@
     <tbody>
         @foreach($posudbe as $posudba)
             <tr>
-                <td>Član: {{$posudba->clan->ime}} {{$posudba->clan->prezime}}</td>
-                <td>Knjiga: {{$posudba->knjiga->naziv}}</td>
-                <td>Datum posudbe: {{$posudba->datum_posudbe}}</td>
-                <td>Datum vraćanja: {{$posudba->datum_vracanja ?? 'Nije još vraćeno'}}</td> <!--coalesing operator, umjesto NULL piše poruku-->
+                <td>{{$posudba->clan->ime}} {{$posudba->clan->prezime}}</td>
+                <td>{{$posudba->knjiga->naziv}}</td>
+                <td>{{$posudba->datum_posudbe}}</td>
+                <td>{{$posudba->datum_vracanja ?? 'Nije još vraćeno'}}</td> <!--coalesing operator, umjesto NULL piše poruku-->
                 <td>
                     <form action="{{route('posudbas.show', $posudba->id)}}" method="GET" style="dysplay: inline;">
                         @csrf

@@ -21,5 +21,5 @@
     <label>Datum posudbe</label>
     <input type="date" name="datum_posudbe" required>
     <br>
-    <button type="submit">Posudi</button>
+    <button type="submit">Posudi knjigu</button>
 </form>

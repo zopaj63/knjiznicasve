@@ -22,6 +22,13 @@
     <label>Datum posudbe</label>
     <input type="date" name="datum_posudbe" value="{{$posudba->datum_posudbe}}" required>
     <br>
+    <label>Datum vraćanja</label>
+    <input type="date" name="datum_vracanja" value="{{$posudba->datum_vracanja}}">
+    // ostale opcije:
+
+
+
+    
     <button type="submit">Ažuriraj</button>
 
 </form>
