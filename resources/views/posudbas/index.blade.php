@@ -35,7 +35,7 @@
                     </form>
                 </td>
                 <td>
-                    <form action="{{route('posudbas.destroy', $posudba->id)}}" method="POST" style="display: inline;">
+                    <form action="{{route('posudbas.destroy', $posudba->id)}}" onsubmit="return confirm('Sigurno želite obrisati posudbu?');" method="POST" style="display: inline;">
                         @csrf
                         @method("DELETE")
                         <button type="submit">Obriši</button>
