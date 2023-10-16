@@ -1,4 +1,4 @@
-<h1>Lista posudbi</h1>
+<h1>Popis posudbi</h1>
 <hr>
 
 <a href="{{route('posudbas.create')}}">Posudi knjigu</a>
@@ -23,19 +23,19 @@
                 <td>{{$posudba->datum_posudbe}}</td>
                 <td>{{$posudba->datum_vracanja ?? 'Nije još vraćeno'}}</td> <!--coalesing operator, umjesto NULL piše poruku-->
                 <td>
-                    <form action="{{route('posudbas.show', $posudba->id)}}" method="GET" style="dysplay: inline;">
+                    <form action="{{route('posudbas.show', $posudba->id)}}" method="GET" style="display: inline;">
                         @csrf
                         <button type="submit">Prikaži</button>
                     </form>
                 </td>
                 <td>
-                    <form action="{{route('posudbas.edit', $posudba->id)}}" method="GET" style="dysplay: inline;">
+                    <form action="{{route('posudbas.edit', $posudba->id)}}" method="GET" style="display: inline;">
                         @csrf
                         <button type="submit">Uredi</button>
                     </form>
                 </td>
                 <td>
-                    <form action="{{route('posudbas.destroy', $posudba->id)}}" method="POST" style="dysplay: inline;">
+                    <form action="{{route('posudbas.destroy', $posudba->id)}}" method="POST" style="display: inline;">
                         @csrf
                         @method("DELETE")
                         <button type="submit">Obriši</button>

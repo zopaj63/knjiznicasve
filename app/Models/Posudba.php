@@ -29,6 +29,6 @@ class Posudba extends Model
 
     public function knjiga()
     {
-        return $this->belongsTo(Knjiga::class, 'id_knjiga'); // jer nismo upisali knjiga_id
+        return $this->belongsTo(Knjiga::class, 'id_knjiga'); // dodati i vanjski ključ id_knjiga jer nismo upisali knjiga_id, kako očekuje Laravel
     }
 }

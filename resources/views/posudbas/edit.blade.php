@@ -24,11 +24,17 @@
     <br>
     <label>Datum vraćanja</label>
     <input type="date" name="datum_vracanja" value="{{$posudba->datum_vracanja}}">
-    // ostale opcije:
 
-
-
-    
     <button type="submit">Ažuriraj</button>
 
 </form>
+
+    <!--
+    // ostale opcije za datum vraćanja:
+    <input type="text" name="datum_vracanja" value="{{date('Y-m-d H-i-s')}}">
+    ili
+    <input type="text" name="datum_vracanja" value="{{date(now)}}">
+    ili
+    use Carbon\Carbon; - staviti na vrh ispod ostalih use
+    <input type="text" name="datum_vracanja" value="{{Carbon::now()->format('Y-m-d')}}">
+    -->

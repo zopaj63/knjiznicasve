@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClanController;
 use App\Http\Controllers\KnjigaController;
@@ -20,10 +21,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource("clans", ClanController::class); // sve rute za CRUD operacije
-Route::resource("knjigas", KnjigaController::class);
-Route::resource("posudbas", PosudbaController::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get("/clans/{clan}/confirmDelete", [ClanController::Class, "confirmDelete"])->name("clans.confirm-delete");
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get("/knjigas/{knjiga}/confirmDelete", [KnjigaController::Class, "confirmDelete"])->name("knjigas.confirm-delete");
+require __DIR__.'/auth.php';
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::resource("clans", ClanController::class);
+    Route::resource("knjigas", KnjigaController::class);
+    Route::resource("posudbas", PosudbaController::class);
+
+    Route::get("/clans/{clan}/confirmDelete", [ClanController::Class, "confirmDelete"])->name("clans.confirm-delete");
+
+    Route::get("/knjigas/{knjiga}/confirmDelete", [KnjigaController::Class, "confirmDelete"])->name("knjigas.confirm-delete");
+});
