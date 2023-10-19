@@ -49,7 +49,7 @@ class PosudbaController extends Controller
         ]);
 
         // odabrana knjiga postaje posuđena (posudena=true)
-        $knjiga=Knjiga::findOrFail($request)->input("id_knjiga");
+        $knjiga=Knjiga::findOrFail($request->input("id_knjiga"));
         $knjiga->posudena=1; //posuđenoj knjizi dodjeljujemo oznaku true
         $knjiga->save(); //spremanje u bazu
 

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Realtions\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Posudba;
 
 class Knjiga extends Model
