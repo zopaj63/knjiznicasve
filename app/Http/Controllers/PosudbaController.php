@@ -14,7 +14,8 @@ class PosudbaController extends Controller
      */
     public function index()
     {
-        $posudbe=Posudba::with("clan", "knjiga")->get(); // eloquent orm: dohvat podataka s INNER JOIN
+        //$posudbe=Posudba::with("clan", "knjiga")->get(); // eloquent orm: dohvat podataka s INNER JOIN
+        $posudbe=Posudba::all();
         return view("posudbas.index", compact("posudbe")); // sve posudbe sa clanovima i knjigama iz baze
     }
 
@@ -60,26 +61,27 @@ class PosudbaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Posudba $posudba)
+    public function show($id)
     {
+        $posudba=Posudba::findOrFail($id);
         return view("posudbas.show", compact("posudba"));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Posudba $posudba) // ime modela koji se pretražuje i varijabla u koju laravel automatski pohrani podatak određenog id-a, instancu modela koji odgovara id-u
+    public function edit($id) // ime modela koji se pretražuje i varijabla u koju laravel automatski pohrani podatak određenog id-a, instancu modela koji odgovara id-u
     {
+        $posudba=Posudba::findOrFail($id);
         $clanovi=Clan::all();
         $knjige=Knjiga::all();
         return view("posudbas.edit", compact("posudba", "clanovi", "knjige"));
-        // implicitna veza modela ruta, laravel automatski stvara, injektira instancu posudba
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Posudba $posudba)
+    public function update(Request $request, $id)
     {
         $request->validate([
             "id_clan"=>"required",
@@ -104,8 +106,9 @@ class PosudbaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Posudba $posudba)
+    public function destroy($id)
     {
+        $posudba=Posudba::findOrFail($id);
         $posudba->delete();
         return redirect()->route("posudbas.index")->with("success", "Posudba uspješno obrisana");
     }
