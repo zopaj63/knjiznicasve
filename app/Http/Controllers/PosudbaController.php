@@ -24,7 +24,15 @@ class PosudbaController extends Controller
     public function create()
     {
         $clanovi=Clan::all(); // priprema za padajuću listu, select-option
-        $knjige=Knjiga::all();
+
+        //$knjige=Knjiga::all();
+
+        //dohvaćamo samo knjige koje nemaju datum_vracanja, dakle, posuđene su već
+        $knjige=Knjiga::whereDoesntHave('posudbe', function($query) //
+        {
+            $query->whereNull('datum_vracanja');
+        })->get();
+
         return view("posudbas.create", compact("clanovi", "knjige"));
     }
 
@@ -39,6 +47,11 @@ class PosudbaController extends Controller
             "id_knjiga"=>"required",
             "datum_posudbe"=>"required|date",
         ]);
+
+        // odabrana knjiga postaje posuđena (posudena=true)
+        $knjiga=Knjiga::findOrFail($request)->input("id_knjiga");
+        $knjiga->posudena=1; //posuđenoj knjizi dodjeljujemo oznaku true
+        $knjiga->save(); //spremanje u bazu
 
         Posudba::create($request->all()); // spremanje posudbe u bazu
         return redirect()->route("posudbas.index")->with("success", "Posudba uspješno pohranjena");
@@ -75,6 +88,15 @@ class PosudbaController extends Controller
             "datum_vracanja"=>"required|date",
         ]);
 
+        // vraćamo posudena na false
+        if($request->has('datum_vracanja'))
+        {
+            $knjiga=Knjiga::findOrFail($request->input('id_knjiga'));
+            $knjiga->posudena=0;
+            $knjiga->save();
+        }
+
+        $posudba=Posudba::findOrFail($id);
         $posudba->update($request->all()); //pohrana u bazu validirane ažurirane podatke
         return redirect()->route("posudbas.index")->with("success", "Posudba uspješno ažurirana");
     }

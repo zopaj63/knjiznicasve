@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Realtions\HasMany;
+use App\Models\Posudba;
 
 class Knjiga extends Model
 {
@@ -17,6 +19,17 @@ class Knjiga extends Model
         protected $fillable=[
             "naziv",
             "autor",
-            "godina_izdanja"
+            "godina_izdanja",
         ];
+
+        public function scopeAvailable($query)
+        {
+            return $query->where('posudena', false);
+        }
+
+        //definiranje metode koja se koristi u kontroleru posudba
+        public function posudbe():HasMany
+        {
+            return $this->hasMany(Posudba::class, 'id_knjiga');
+        }
 }
