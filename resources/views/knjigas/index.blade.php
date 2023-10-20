@@ -29,7 +29,7 @@
         <b>Naziv:</b> {{$knjiga->naziv}} 
         <b>Autor:</b> {{$knjiga->autor}}
         <b>Izdanje:</b> {{$knjiga->godina_izdanja}}
-        <b>Upisano:</b> {{$knjiga->created_at}}
+        <b>Upisano:</b> {{$knjiga->created_at->format("F, Y")}}
         <hr>
     </li>
     @endforeach

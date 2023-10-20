@@ -1,7 +1,7 @@
 <h2>Naziv: {{$knjiga->naziv}}</h2>
 <h3>Autor: {{$knjiga->autor}}</h3>
 <h3>Godina izdanja: {{$knjiga->godina_izdanja}}</h3>
-<h4>Upisano: {{$knjiga->created_at}}</h4>
+<h4>Upisano: {{$knjiga->created_at->format("M-Y")}}</h4>
 
 <form action="{{route('knjigas.edit', $knjiga->id)}}" method="GET" style="display: inline;">
 @csrf
